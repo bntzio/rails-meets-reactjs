@@ -5,20 +5,27 @@
 #= require_tree .
 
 $ ->
-  linkClicked = (event) ->
-    console.log(event)
-    console.log(event.target)
-    alert("you clicked me")
+  vitualDomAfterClick = React.DOM.div(
+    {id: "render-me-react-please"},
+    React.DOM.span({}, "You clicked the link")
+  )
+  
 
-  virtualDom = React.DOM.div(
+  linkClicked = (event) ->
+    ReactDOM.render(
+      vitualDomAfterClick,
+      document.getElementById("start")
+    )
+
+  virtualDomBeforeClick = React.DOM.div(
     {id: "render-me-react-please"},
     React.DOM.a(
-      {href: "javascript:void(0)", onClick: linkClicked}
+      {href: "javascript:void(0)", onClick: linkClicked},
       "Click me"
     )
   )
 
   ReactDOM.render(
-    virtualDom,
+    virtualDomBeforeClick,
     document.getElementById("start")
   )
